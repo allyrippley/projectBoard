@@ -27,8 +27,11 @@ app.use(stylus.middleware(
 ));
 
 app.use(express.static(__dirname + '/public'));
-
-mongoose.connect('mongodb://localhost/projectboard');
+if(env === 'development') {
+  mongoose.connect('mongodb://localhost/projectboard');
+} else {
+  mongoose.connect('mongodb://ally:liberty@ds063330.mongolab.com:63330/heroku_app19803277');
+}
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error...'));
 db.once('open', function callback() {
@@ -53,6 +56,7 @@ app.get('*', function(req, res){
   });
 });
 
-app.listen(3030, function() {
-  console.log('Listening on port 3030');
+var port = process.env.PORT || 3030;
+app.listen(port, function() {
+  console.log('Listening on port '+port);
 });
