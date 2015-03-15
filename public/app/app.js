@@ -7,5 +7,5 @@ angular.module('app').config(function($routeProvider,
     requireBase: false
   });
   $routeProvider
-    .when('/', { templateUrl: '/partials/main', controller: 'pbMainCtrl'})
+    .when('/', { templateUrl: '/partials/main/main', controller: 'pbMainCtrl'})
 });

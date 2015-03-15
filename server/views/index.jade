@@ -4,12 +4,12 @@ block main-content
     .container
       .navbar-header
         a.navbar-brand(href="/") ProjectBoard
-          h6 -Manage Projects like a Boss {{ myVar }}
+          h6 Manage Projects like a Boss {{ myVar }}
       .navbar-collapse.collapse
         ul.nav.navbar-nav
           li
             a(href="/") Home
-        div(ng-include="'/partials/navbar-login'")
+        div(ng-include="'/partials/account/navbar-login'")
   section.content
     div(ng-view)
 
