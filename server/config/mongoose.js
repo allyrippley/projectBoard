@@ -12,6 +12,23 @@ module.exports = function(config) {
     console.log('projectboard db opened');
   });
 
+  var userSchema = mongoose.Schema({
+    firstName: String,
+    lastName: String,
+    userName: String
+  });
+
+  var User = mongoose.model('User', userSchema);
+
+  User.find({}).exec(function(err, collection) {
+    if(collection.length === 0) {
+      User.create({firstName:'Joe', lastName:'Rippley', username:'user'});
+      User.create({firstName:'Ally', lastName:'Rippley', username:'user2'});
+      User.create({firstName:'Brooky', lastName:'Rippley', username:'user3'});
+      User.create({firstName:'Riley', lastName:'Rippley', username:'user4'});
+    }
+  })
+
 
   /* var messageSchema = mongoose.Schema({message: String});
   var Message = mongoose.model('Message', messageSchema);
