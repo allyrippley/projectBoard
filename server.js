@@ -16,7 +16,8 @@ function compile(str, path) {
 app.set('views', __dirname + '/server/views');
 app.set('view engine', 'jade');
 app.use(logger('dev'));
-app.use(bodyParser());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 app.use(stylus.middleware(
   {
     src: __dirname + '/public',
@@ -25,11 +26,11 @@ app.use(stylus.middleware(
 ));
 
 app.use(express.static(__dirname + '/public'));
-if(env === 'development') {
+/* if(env === 'development') {
   mongoose.connect('mongodb://localhost/projectboard');
-} else {
+} else { */
   mongoose.connect('mongodb://ally:liberty@ds063330.mongolab.com:63330/heroku_app19803277');
-}
+/* } */
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error...'));
 db.once('open', function callback() {

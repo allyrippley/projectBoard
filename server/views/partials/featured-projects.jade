@@ -1,3 +1,5 @@
 .panel.panel-primary
   .panel-heading.text-center Featured Projects
-  .panel-body Project Body
+  .panel-body
+    .row(ng-repeat="project in projects | filter:{featured:true}")
+      .col-md-12 {{project.name}}
