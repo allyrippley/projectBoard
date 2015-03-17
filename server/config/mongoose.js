@@ -1,4 +1,5 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+  crypto = require('crypto');
 
 module.exports = function(config) {
   /* if(env === 'development') {
@@ -15,17 +16,32 @@ module.exports = function(config) {
   var userSchema = mongoose.Schema({
     firstName: String,
     lastName: String,
-    userName: String
+    username: String,
+    salt: String,
+    hashed_pwd: String
   });
-
+  userSchema.methods = {
+      authenticate: function(passwordToMatch) {
+        return hashPwd(this.salt, passwordToMatch) === this.hashed_pwd;
+      }
+  }
   var User = mongoose.model('User', userSchema);
 
   User.find({}).exec(function(err, collection) {
     if(collection.length === 0) {
-      User.create({firstName:'Joe', lastName:'Rippley', username:'user'});
-      User.create({firstName:'Ally', lastName:'Rippley', username:'user2'});
-      User.create({firstName:'Brooky', lastName:'Rippley', username:'user3'});
-      User.create({firstName:'Riley', lastName:'Rippley', username:'user4'});
+      var salt, hash;
+      salt = createSalt();
+      hash = hashPwd(salt, 'joe');
+      User.create({firstName:'Joe', lastName:'Rippley', username:'joe', salt: salt, hashed_pwd: hash});
+      salt = createSalt();
+      hash = hashPwd(salt, 'ally');
+      User.create({firstName:'Ally', lastName:'Rippley', username:'ally', salt: salt, hashed_pwd: hash});
+      salt = createSalt();
+      hash = hashPwd(salt, 'brook');
+      User.create({firstName:'Brooky', lastName:'Rippley', username:'brook', salt: salt, hashed_pwd: hash});
+      salt = createSalt();
+      hash = hashPwd(salt, 'riley');
+      User.create({firstName:'Riley', lastName:'Rippley', username:'riley', salt: salt, hashed_pwd: hash});
     }
   })
 
@@ -36,4 +52,14 @@ module.exports = function(config) {
   Message.findOne().exec(function(err, messageDoc) {
     mongoMessage = messageDoc.message;
   }); */
+}
+
+function createSalt() {
+
+  return crypto.randomBytes(128).toString('base64');
+}
+
+function hashPwd(salt, pwd) {
+  var hmac = crypto.createHmac('sha1', salt);
+  return hmac.update(pwd).digest('hex');
 }

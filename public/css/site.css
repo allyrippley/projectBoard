@@ -4,9 +4,13 @@ body {
 .navbar-header a.navbar-brand {
   margin-top: 10px;
   margin-bottom: 20px;
+  color: #fff;
 }
 .navbar-header a.navbar-brand h6 {
-  color: #ccc;
+  color: #de1213;
+}
+.navbar {
+  border-bottom: 5px #de1213 solid;
 }
 footer {
   padding-left: 15px;
@@ -20,4 +24,14 @@ footer p {
 }
 .navbar-form button {
   margin-left: 10px;
+}
+.jumbotron {
+  margin-top: 40px;
+}
+.toast-top-right {
+  top: 70px;
+}
+.toast-success {
+  background-color: #000;
+  color: #fff;
 }
