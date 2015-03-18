@@ -56,7 +56,6 @@ module.exports = function(config) {
 }
 
 function createSalt() {
-
   return crypto.randomBytes(128).toString('base64');
 }
 
