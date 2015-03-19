@@ -7,7 +7,7 @@ angular.module('app').factory('pbIdentity', function($window, pbUser) {
   return {
     currentUser: currentUser,
     isAuthenticated: function() {
-      return !!this.currentUser;
+      return !!this.currentUser && this.currentUser.roles.indexOf(role) > -1;
     }
   }
 });

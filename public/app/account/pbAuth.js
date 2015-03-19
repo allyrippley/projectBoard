@@ -20,6 +20,13 @@ angular.module('app').factory('pbAuth', function($http, pbIdentity, $q, pbUser) 
         dfd.resolve();
       });
       return dfd.promise;
+    },
+    authorizeCurrentUserForRoute: function(role) {
+      if(pbIdentity.isAuthorized(role)) {
+        return true;
+      } else {
+        return $q.reject('not authorized');
+      }
     }
   }
 });
