@@ -1,7 +1,8 @@
-angular.module('app').factory('pbIdentity', function($window) {
+angular.module('app').factory('pbIdentity', function($window, pbUser) {
   var currentUser;
   if(!!$window.bootstrappedUserObject) {
-    currentUser = $window.bootstrappedUserObject;
+    currentUser = new pbUser();
+    angular.extend(currentUser, $window.bootstrappedUserObject);
   }
   return {
     currentUser: currentUser,

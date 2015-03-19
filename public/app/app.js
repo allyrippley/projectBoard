@@ -8,4 +8,5 @@ angular.module('app').config(function($routeProvider,
   });
   $routeProvider
     .when('/', { templateUrl: '/partials/main/main', controller: 'pbMainCtrl'})
+    .when('/admin/users', { templateUrl: '/partials/admin/user-list', controller: 'pbUserListCtrl'});
 });
