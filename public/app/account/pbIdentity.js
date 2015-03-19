@@ -6,8 +6,11 @@ angular.module('app').factory('pbIdentity', function($window, pbUser) {
   }
   return {
     currentUser: currentUser,
+    isAuthorized: function() {
+      return !!this.currentUser && this.currentUser.roles.indexOf('admin') > -1;
+    },
     isAuthenticated: function() {
-      return !!this.currentUser && this.currentUser.roles.indexOf(role) > -1;
+      return !!this.currentUser;
     }
   }
 });

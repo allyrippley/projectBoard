@@ -4,7 +4,7 @@ angular.module('app').config(function($routeProvider,
                                       $locationProvider) {
 
   var routeRoleChecks = {
-    admin: {auth: function(pbIdentity, $q) {
+    admin: {auth: function(pbIdentity, $q, pbAuth) {
       return pbAuth.authorizeCurrentUserForRoute('admin');
     }}
   }
@@ -17,7 +17,10 @@ angular.module('app').config(function($routeProvider,
     .when('/', { templateUrl: '/partials/main/main', controller: 'pbMainCtrl'})
     .when('/admin/users', { templateUrl: '/partials/admin/user-list',
       controller: 'pbUserListCtrl',
-      resolve: routeRoleChecks.admin}
+      resolve: routeRoleChecks.admin
+    })
+    .when('/signup', { templateUrl: '/partials/account/signup',
+      controller: 'pbSignupCtrl'
     });
 
 });
@@ -28,4 +31,4 @@ angular.module('app').run(function($rootScope, $location) {
       $location.path('/');
     }
   })
-})
+});

@@ -1,4 +1,4 @@
-angular.module('app').factory('pbAuth', function($http, pbIdentity, $q, pbUser) {
+angular.module('app').factory('pbAuth', function($http, pbIdentity, $q, $rootScope, pbUser) {
   return {
     authenticateUser: function(username, password) {
       var dfd = $q.defer();
@@ -11,10 +11,25 @@ angular.module('app').factory('pbAuth', function($http, pbIdentity, $q, pbUser) 
         } else {
           dfd.resolve(false);
         }
+        return dfd.promise;
+      })
+    },
+    createUser: function(newUserData) {
+      var newUser = new pbUser(newUserData);
+      var dfd = $q.defer();
+
+      newUser.$save().then(function() {
+        pbIdentity.currentUser = newUser;
+        dfd.resolve();
+      }, function(response) {
+        dfd.reject(response.data.reason);
       });
+
+      return dfd.promise;
+
     },
     logoutUser: function() {
-      var dfd = $q.defer;
+      var dfd = $q.defer();
       $http.post('/logout', {logout:true}).then(function() {
         pbIdentity.currentUser = undefined;
         dfd.resolve();
