@@ -21,9 +21,10 @@ angular.module('app').factory('pbAuth', function($http, pbIdentity, $q, $rootSco
       newUser.$save().then(function() {
         pbIdentity.currentUser = newUser;
         dfd.resolve();
-      }, function(response) {
-        dfd.reject(response.data.reason);
-      });
+      }//, function(response) {
+        //dfd.reject(response.data.reason);
+      //}
+      );
 
       return dfd.promise;
 
