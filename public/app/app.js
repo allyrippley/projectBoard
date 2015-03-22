@@ -4,8 +4,11 @@ angular.module('app').config(function($routeProvider,
                                       $locationProvider) {
 
   var routeRoleChecks = {
-    admin: {auth: function(pbIdentity, $q, pbAuth) {
+    admin: {auth: function(pbAuth) {
       return pbAuth.authorizeCurrentUserForRoute('admin');
+    }},
+    user: {auth: function(pbAuth) {
+      return pbAuth.authorizeAuthenticateUserForRoute();
     }}
   }
 
@@ -21,6 +24,9 @@ angular.module('app').config(function($routeProvider,
     })
     .when('/signup', { templateUrl: '/partials/account/signup',
       controller: 'pbSignupCtrl'
+    })
+    .when('/profile', { templateUrl: '/partials/account/profile',
+      controller: 'pbProfileCtrl', resolve: routeRoleChecks.user
     });
 
 });

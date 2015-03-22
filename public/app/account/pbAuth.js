@@ -29,6 +29,18 @@ angular.module('app').factory('pbAuth', function($http, pbIdentity, $q, $rootSco
       return dfd.promise;
 
     },
+    updateCurrentUser: function(newUserData){
+      var dfd = $q.defer();
+      var clone = angular.copy(pbIdentity.currentUser);
+      angular.extend(clone, newUserData);
+      clone.$update().then(function() {
+        pbIdentity.currentUser = clone;
+        dfd.resolve();
+      }, function(response) {
+        dfd.reject(response.data.reason);
+      });
+      return dfd.promise();
+    },
     logoutUser: function() {
       var dfd = $q.defer();
       $http.post('/logout', {logout:true}).then(function() {
@@ -39,6 +51,13 @@ angular.module('app').factory('pbAuth', function($http, pbIdentity, $q, $rootSco
     },
     authorizeCurrentUserForRoute: function(role) {
       if(pbIdentity.isAuthorized(role)) {
+        return true;
+      } else {
+        return $q.reject('not authorized');
+      }
+    },
+    authorizeAuthenticateUserForRoute: function() {
+      if(pbIdentity.isAuthenticated()) {
         return true;
       } else {
         return $q.reject('not authorized');
