@@ -27,6 +27,9 @@ angular.module('app').config(function($routeProvider,
     })
     .when('/profile', { templateUrl: '/partials/account/profile',
       controller: 'pbProfileCtrl', resolve: routeRoleChecks.user
+    })
+    .when('/projects', { templateUrl: '/partials/projects/project-list',
+      controller: 'pbProjectListCtrl', resolve: routeRoleChecks.user
     });
 
 });

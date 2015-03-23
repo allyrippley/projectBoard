@@ -1,5 +1,6 @@
 extends ../includes/layout
 block main-content
+  base(href="/")
   .navbar.navbar-inverse.navbar-fixed-top
     .container
       .navbar-header
@@ -9,6 +10,8 @@ block main-content
         ul.nav.navbar-nav
           li
             a(href="/") Home
+          li
+            a(href="/projects") Projects
         div(ng-include="'/partials/account/navbar-login'")
   section.content
     div(ng-view)
