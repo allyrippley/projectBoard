@@ -3,4 +3,4 @@
   .panel-body
     .row(ng-repeat="project in projects | orderBy:'published':true | limitTo:10")
       .col-md-3 {{project.published | date:'MMM d'}}
-      .col-md-9 {{project.name}}
+      .col-md-9 {{project.title}}
