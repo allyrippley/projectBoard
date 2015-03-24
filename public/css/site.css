@@ -6,11 +6,11 @@ body {
   width: 100%;
   height: 100%;
   margin-top: 80px;
-  background-color: #000;
+  background-color: #fff;
 }
 .navbar-header a.navbar-brand {
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   color: #fff;
 }
 .navbar-header a.navbar-brand h6 {
@@ -18,6 +18,9 @@ body {
 }
 .navbar {
   border-bottom: 5px #de1213 solid;
+}
+.navbar li {
+  padding: 13px;
 }
 footer {
   padding-left: 15px;
@@ -61,4 +64,22 @@ footer {
   border-top: 3px solid #de1213;
   padding-top: 30px;
   padding-bottom: 50px;
+}
+.panel-grey {
+  border-color: #ddd;
+  background-color: #ddd;
+  color: #777;
+}
+.panel-body {
+  background-color: #eee;
+}
+.pbAppMain {
+  padding-top: 20px;
+}
+.control-panel {
+  font-size: 1.2em;
+}
+.control-panel .panel-body {
+  font-size: 1.2;
+  line-height: 2em;
 }

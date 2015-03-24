@@ -2,6 +2,11 @@ var auth = require('./auth'),
   projects = require('../controllers/projects'),
   mongoose = require('mongoose'),
   users = require('../controllers/users'),
+  clients = require('../controllers/clients'),
+  calendars = require('../controllers/calendars'),
+  reports = require('../controllers/reports'),
+  tasks = require('../controllers/tasks'),
+  teams = require('../controllers/teams'),
   User = mongoose.model('User');
 
 module.exports = function(app) {
@@ -11,6 +16,11 @@ module.exports = function(app) {
   app.put('/api/users', users.updateUser);
 
   app.get('/api/projects', projects.getProjects);
+  app.get('/api/clients', auth.requireRole('admin'), clients.getClients);
+  app.get('/api/calendars', calendars.getCalendars);
+  app.get('/api/reports', reports.getReports);
+  app.get('/api/tasks', tasks.getTasks);
+  app.get('/api/teams', teams.getTeams);
   app.get('/partials/*', function(req, res) {
     res.render('../../public/app/' + req.params[0]);
   });

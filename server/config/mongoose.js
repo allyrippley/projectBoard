@@ -1,6 +1,11 @@
 var mongoose = require('mongoose'),
   userModel = require('../models/User'),
-  projectModel = require('../models/Project');
+  clientModel = require('../models/Client'),
+  projectModel = require('../models/Project'),
+  calendarModel = require('../models/Calendar');
+  reportModel = require('../models/Report');
+  taskModel = require('../models/Task');
+  teamModel = require('../models/Team');
 
 module.exports = function(config) {
   mongoose.connect(config.db);
@@ -11,5 +16,10 @@ module.exports = function(config) {
   });
   userModel.createDefaultUsers();
   projectModel.createDefaultProjects();
+  clientModel.createDefaultClients();
+  calendarModel.createDefaultCalendars();
+  reportModel.createDefaultReports();
+  taskModel.createDefaultTasks();
+  teamModel.createDefaultTeams();
 
 };

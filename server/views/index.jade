@@ -5,15 +5,16 @@ block main-content
     .container
       .navbar-header
         a.navbar-brand(href="/") ProjectBoard
-          h6 Manage Projects like a Boss {{ myVar }}
       .navbar-collapse.collapse
         ul.nav.navbar-nav
           li
             a(href="/") Home
           li
             a(href="/projects") Projects
+          li
+            a(href="/clients") Clients
         div(ng-include="'/partials/account/navbar-login'")
-  section.content
+  section.content.pbAppMain
     div(ng-view)
 
   footer.pbFooter.text-center

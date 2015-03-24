@@ -28,8 +28,23 @@ angular.module('app').config(function($routeProvider,
     .when('/profile', { templateUrl: '/partials/account/profile',
       controller: 'pbProfileCtrl', resolve: routeRoleChecks.user
     })
+    .when('/clients', { templateUrl: '/partials/clients/client-list',
+      controller: 'pbClientListCtrl', resolve: routeRoleChecks.user
+    })
     .when('/projects', { templateUrl: '/partials/projects/project-list',
       controller: 'pbProjectListCtrl', resolve: routeRoleChecks.user
+    })
+    .when('/reports', { templateUrl: '/partials/reports/report-list',
+      controller: 'pbReportListCtrl', resolve: routeRoleChecks.admin
+    })
+    .when('/calendars', { templateUrl: '/partials/calendar/calendar-list',
+      controller: 'pbCalendarListCtrl', resolve: routeRoleChecks.admin
+    })
+    .when('/tasks', { templateUrl: '/partials/tasks/task-list',
+      controller: 'pbTaskListCtrl', resolve: routeRoleChecks.user
+    })
+    .when('/team', { templateUrl: '/partials/team/team-list',
+      controller: 'pbTeamListCtrl', resolve: routeRoleChecks.user
     });
 
 });

@@ -1,8 +1,6 @@
-.headmast
-  img(src="img/headmast.jpg")
 .container
   .row
-    .col-md-6
-      div(ng-include="'/partials/main/featured-projects'")
-    .col-md-6
+    .col-md-3.pbSidebar
+      div(ng-include="'/partials/main/control-panel'")
+    .col-md-9.pbMain
       div(ng-include="'/partials/main/new-projects'")

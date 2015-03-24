@@ -1,5 +1,5 @@
-.panel.panel-primary
-  .panel-heading.text-center New Projects
+.panel.panel-grey
+  .panel-heading.text-center.panel-grey New Projects
   .panel-body
     .row(ng-repeat="project in projects | orderBy:'published':true | limitTo:10")
       .col-md-3 {{project.published | date:'MMM d'}}
